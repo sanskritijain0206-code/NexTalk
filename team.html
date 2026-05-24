@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexTalk Team Workspace</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: white;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: #1e293b;
+            padding: 25px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+            color: #38bdf8;
+        }
+
+        .channel {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .channel:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main workspace */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top bar */
+        .topbar {
+            height: 80px;
+            background: #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .topbar h3 {
+            color: #38bdf8;
+        }
+
+        .top-buttons button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .call-btn {
+            background: #22c55e;
+            color: white;
+        }
+
+        .share-btn {
+            background: #38bdf8;
+            color: white;
+        }
+
+        /* Video section */
+        .video-section {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+        }
+
+        .video-box {
+            flex: 1;
+            height: 220px;
+            background: #1e293b;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 20px;
+        }
+
+        /* Chat area */
+        .chat-section {
+            flex: 1;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messages {
+            flex: 1;
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 20px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        .message strong {
+            color: #38bdf8;
+        }
+
+        /* Input */
+        .chat-input {
+            display: flex;
+            gap: 15px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input button {
+            padding: 15px 25px;
+            background: #38bdf8;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .chat-input button:hover {
+            background: #0284c7;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>NexTalk</h2>
+        <div class="channel"># General Team</div>
+        <div class="channel"># Design</div>
+        <div class="channel"># Development</div>
+        <div class="channel"># Marketing</div>
+        <div class="channel"># Announcements</div>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+        <!-- Top Bar -->
+        <div class="topbar">
+            <h3>Team Workspace</h3>
+            <div class="top-buttons">
+                <button class="call-btn">Start Group Call</button>
+                <button class="share-btn">Share Screen</button>
+            </div>
+        </div>
+
+        <!-- Video Call Area -->
+        <div class="video-section">
+            <div class="video-box">Your Video</div>
+            <div class="video-box">Team Video</div>
+        </div>
+
+        <!-- Chat Section -->
+        <div class="chat-section">
+            <div class="messages" id="messages">
+                <div class="message"><strong>Alice:</strong> Welcome to NexTalk team workspace 🚀</div>
+                <div class="message"><strong>John:</strong> Let’s begin today’s project discussion.</div>
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="msgInput" placeholder="Type a message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function sendMessage() {
+            let input = document.getElementById("msgInput");
+            let msg = input.value.trim();
+
+            if(msg !== "") {
+                let messages = document.getElementById("messages");
+
+                let div = document.createElement("div");
+                div.className = "message";
+                div.innerHTML = "<strong>You:</strong> " + msg;
+
+                messages.appendChild(div);
+                input.value = "";
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+    </script>
+
+</body>
+</html>
